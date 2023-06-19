@@ -41,7 +41,7 @@ from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import SparkKube
 
 # [START instantiate_dag]
 
-DAG_ID = "spark_pi"
+DAG_ID = "example_pyspark_pi_job"
 
 with DAG(
     DAG_ID,
@@ -53,7 +53,7 @@ with DAG(
 ) as dag:
     # [START SparkKubernetesOperator_DAG]
     t1 = SparkKubernetesOperator(
-        task_id="spark_pi_submit",
+        task_id="pyspark_pi_submit",
         namespace="default",
         application_file="example_pyspark_pi_job.yaml",
         do_xcom_push=True,
@@ -61,7 +61,7 @@ with DAG(
     )
 
     t2 = SparkKubernetesSensor(
-        task_id="spark_pi_monitor",
+        task_id="pyspark_pi_monitor",
         namespace="default",
         application_name="{{ task_instance.xcom_pull(task_ids='spark_pi_submit')['metadata']['name'] }}",
         dag=dag,
