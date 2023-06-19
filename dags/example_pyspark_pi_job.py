@@ -54,7 +54,7 @@ with DAG(
     # [START SparkKubernetesOperator_DAG]
     t1 = SparkKubernetesOperator(
         task_id="pyspark_pi_submit",
-        namespace="default",
+        namespace="spark-team-a",
         application_file="example_pyspark_pi_job.yaml",
         do_xcom_push=True,
         dag=dag,
@@ -62,7 +62,7 @@ with DAG(
 
     t2 = SparkKubernetesSensor(
         task_id="pyspark_pi_monitor",
-        namespace="default",
+        namespace="spark-team-a",
         application_name="{{ task_instance.xcom_pull(task_ids='spark_pi_submit')['metadata']['name'] }}",
         dag=dag,
     )
