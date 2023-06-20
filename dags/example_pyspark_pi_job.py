@@ -63,7 +63,7 @@ with DAG(
     t2 = SparkKubernetesSensor(
         task_id="pyspark_pi_monitor",
         namespace="spark-team-a",
-        application_name="{{ task_instance.xcom_pull(task_ids='spark_pi_submit')['metadata']['name'] }}",
+        application_name="{{ task_instance.xcom_pull(task_ids='pyspark_pi_submit')['metadata']['name'] }}",
         dag=dag,
     )
     t1 >> t2
