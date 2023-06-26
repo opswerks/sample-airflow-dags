@@ -21,7 +21,7 @@ In this example, we create two tasks which execute sequentially.
 The first task is to submit sparkApplication on Kubernetes cluster(the example uses spark-pi application).
 and the second task is to check the final state of the sparkApplication that submitted in the first state.
 
-Spark-on-k8s operator is required to be already installed on Kubernetes
+!!!Spark-on-k8s operator is required to be already installed on Kubernetes!!!
 
 """
 from __future__ import annotations
